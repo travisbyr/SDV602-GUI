@@ -14,7 +14,6 @@ while True:
     event, values = window.read()
     if event == sg.WINDOW_CLOSED or event == 'Quit':
         break
-    # Output a message to the window
     # window['-OUTPUT-'].update("You arrived at your destination")
     if event == 'Left':
         header.update(
