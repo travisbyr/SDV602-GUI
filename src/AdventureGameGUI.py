@@ -1,24 +1,26 @@
 import PySimpleGUI as sg
 
-# Define the window's contents
-layout = [[sg.Text("What's your name?", key='-IN-')],
-          [sg.Input(key='-INPUT-')],
-          [sg.Text(size=(40,1), key='-OUTPUT-')],
-          [sg.Button('Ok'), sg.Button('Quit')]]
+layout = [[sg.Text("You are in a forest, where do you want to go?", text_color="#343434", background_color="#f2f2f2", key='-head-')],
+          # [sg.Input(key='-INPUT-')],
+          [sg.Text(size=(40, 1), background_color="#f2f2f2", key='-OUTPUT-')],
+          [sg.Button('Left', button_color=('black', 'orange')), sg.Button('Right', button_color=('black', 'red')), sg.Button('Quit', button_color=('black', 'yellow'))]]
 
-# Create the window
-window = sg.Window('Window Title', layout)
-userInput = window['-IN-']
-# Display and interact with the Window using an Event Loop
+window = sg.Window('Adventure Game', auto_size_text=True,
+                   background_color="#f2f2f2", default_element_size=(40, 1)).Layout(layout)
+#userInput = window['-INPUT-']
+header = window['-head-']
+
 while True:
     event, values = window.read()
-    # See if user wants to quit or window was closed
     if event == sg.WINDOW_CLOSED or event == 'Quit':
         break
     # Output a message to the window
-    # window['-OUTPUT-'].update('Hello ' + values['-INPUT-'] + "! Thanks for trying PySimpleGUI")
-    userInput.update(value="dwadawdwa")
+    # window['-OUTPUT-'].update("You arrived at your destination")
+    if event == 'Left':
+        header.update(
+            value="You are now at a castle, where do you want to go?")
+    if event == 'Right':
+        header.update(value="You are now at a house, where do you want to go?")
+        # userInput.update(value="")
 
-
-# Finish up by removing from the screen
 window.close()
